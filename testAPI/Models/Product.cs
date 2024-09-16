@@ -12,6 +12,7 @@ namespace testAPI.Models
         [StringLength(100)]
         public string Name { get; set; } = string.Empty;
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ProduceDate { get; set; }
         [StringLength(50)]
         public string ManufacturePhone { get; set; } = string.Empty;
