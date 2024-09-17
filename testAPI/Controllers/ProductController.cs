@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using testAPI.Data;
+using testAPI.Dtos.Product;
 using testAPI.Models;
 
 namespace testAPI.Controllers
@@ -10,59 +12,61 @@ namespace testAPI.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductController(ApplicationDBContext context)
+        public ProductController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _context.Products.ToListAsync());
+            var products = await _context.Products.ToListAsync();
+            var productDto = products.Select(p => _mapper.Map<ProductDto>(p));
+            return Ok(productDto);
         }
 
         [HttpGet]
-        [Route("GetById/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
                 return BadRequest("Nothing Found");
-            return Ok(product);
+            return Ok(_mapper.Map<ProductDto>(product));
         }
         
         [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> Create([FromBody] Product product)
+        public async Task<IActionResult> Create([FromBody] CreateProductDto productModel)
         {
+            var product = _mapper.Map<Product>(productModel);
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return Ok(product);
         }
 
-        [HttpPost]
-        [Route("Update/{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Product product)
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateProductDto productModel)
         {
-            var productModel = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
-            if (productModel == null)
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (product == null)
                 return BadRequest("Nothing Found");
 
-            productModel.Id = id;
-            productModel.Name = product.Name;
-            productModel.ProduceDate = product.ProduceDate;
-            productModel.ManufactureEmail = product.ManufactureEmail;
-            productModel.ManufacturePhone = product.ManufacturePhone;
-            productModel.IsAvailable = product.IsAvailable;
+            var updatedProduct = _mapper.Map<Product>(productModel);
+
+            product.Name = updatedProduct.Name;
+            product.ProduceDate = updatedProduct.ProduceDate;
+            product.IsAvailable = updatedProduct.IsAvailable;
 
             await _context.SaveChangesAsync();
-            return Ok(productModel);
+            return Ok(product);
         }
 
-        [HttpPost]
-        [Route("Delete/{id}")]
+        [HttpDelete]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);

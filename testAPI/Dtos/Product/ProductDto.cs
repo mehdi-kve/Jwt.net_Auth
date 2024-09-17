@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace testAPI.Models
+namespace testAPI.Dtos.Product
 {
-    [Table("Products")]
-    public class Product
+    public class ProductDto
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public DateTime ProduceDate { get; set; }
