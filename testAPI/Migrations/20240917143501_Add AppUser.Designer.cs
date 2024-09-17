@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using testAPI.Data;
 
@@ -11,9 +12,11 @@ using testAPI.Data;
 namespace testAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240917143501_Add AppUser")]
+    partial class AddAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,20 +50,6 @@ namespace testAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "e1049428-25bf-4a37-ae2f-8cde22b2592d",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "0f170214-f95b-40af-b4cb-13ff96945c82",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -327,10 +316,15 @@ namespace testAPI.Migrations
             modelBuilder.Entity("testAPI.Models.Product", b =>
                 {
                     b.HasOne("testAPI.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("testAPI.Models.AppUser", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

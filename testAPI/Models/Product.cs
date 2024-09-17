@@ -13,5 +13,8 @@ namespace testAPI.Models
         public string ManufacturePhone { get; set; } = string.Empty;
         public string ManufactureEmail { get; set; } = string.Empty;
         public bool? IsAvailable { get; set; }
+
+        public int UserId { get; set; }
+        public AppUser? AppUser { get; set; }
     }
 }

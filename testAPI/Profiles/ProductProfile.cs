@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using testAPI.Dtos.Product;
-using testAPI.Dtos.Responses;
 using testAPI.Models;
 
 namespace testAPI.Profiles

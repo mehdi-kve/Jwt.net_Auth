@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace testAPI.Dtos.Product
 {
@@ -14,7 +15,7 @@ namespace testAPI.Dtos.Product
         public DateTime ProduceDate { get; set; }
 
         [Required]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Available must be checked.")]
-        public bool? IsAvailable { get; set; }
+        [Range(typeof(bool), "false", "true")]        
+        public bool IsAvailable { get; set; }
     }
 }

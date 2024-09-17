@@ -14,7 +14,7 @@ namespace testAPI.Dtos.Product
         public DateTime ProduceDate { get; set; }
 
         [Required]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Available must be checked.")]
+        [Range(typeof(bool), "false", "true")]
         public bool? IsAvailable { get; set; }
     }
 }
