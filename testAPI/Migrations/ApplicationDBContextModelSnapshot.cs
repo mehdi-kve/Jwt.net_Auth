@@ -51,13 +51,13 @@ namespace testAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e1049428-25bf-4a37-ae2f-8cde22b2592d",
+                            Id = "7957d2a5-0057-496d-8b50-ec5505f17131",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0f170214-f95b-40af-b4cb-13ff96945c82",
+                            Id = "7ec7e3cc-9fff-4666-85f6-7834cbe67b7c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -263,9 +263,6 @@ namespace testAPI.Migrations
                     b.Property<DateTime>("ProduceDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -327,10 +324,15 @@ namespace testAPI.Migrations
             modelBuilder.Entity("testAPI.Models.Product", b =>
                 {
                     b.HasOne("testAPI.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Portfolios")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("testAPI.Models.AppUser", b =>
+                {
+                    b.Navigation("Portfolios");
                 });
 #pragma warning restore 612, 618
         }

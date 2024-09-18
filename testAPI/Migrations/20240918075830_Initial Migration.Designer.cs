@@ -12,8 +12,8 @@ using testAPI.Data;
 namespace testAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240917143501_Add AppUser")]
-    partial class AddAppUser
+    [Migration("20240918075830_Initial Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,20 @@ namespace testAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7957d2a5-0057-496d-8b50-ec5505f17131",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "7ec7e3cc-9fff-4666-85f6-7834cbe67b7c",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -252,9 +266,6 @@ namespace testAPI.Migrations
                     b.Property<DateTime>("ProduceDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -316,7 +327,7 @@ namespace testAPI.Migrations
             modelBuilder.Entity("testAPI.Models.Product", b =>
                 {
                     b.HasOne("testAPI.Models.AppUser", "AppUser")
-                        .WithMany("Products")
+                        .WithMany("Portfolios")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -324,7 +335,7 @@ namespace testAPI.Migrations
 
             modelBuilder.Entity("testAPI.Models.AppUser", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Portfolios");
                 });
 #pragma warning restore 612, 618
         }

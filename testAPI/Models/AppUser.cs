@@ -4,6 +4,6 @@ namespace testAPI.Models
 {
     public class AppUser : IdentityUser
     {
-        //public List<Product> Products { get; set; } = new List<Product>();
+        public List<Product> Portfolios { get; set; } = new List<Product>();
     }
 }

@@ -22,6 +22,7 @@ namespace testAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var products = await _context.Products.ToListAsync();
@@ -31,6 +32,7 @@ namespace testAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -40,6 +42,7 @@ namespace testAPI.Controllers
         }
         
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateProductDto productModel)
         {
             var product = _mapper.Map<Product>(productModel);
@@ -49,6 +52,7 @@ namespace testAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateProductDto productModel)
         {
@@ -67,6 +71,7 @@ namespace testAPI.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
