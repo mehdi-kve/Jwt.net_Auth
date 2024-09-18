@@ -14,6 +14,14 @@ namespace testAPI.Dtos.Product
         public DateTime ProduceDate { get; set; }
 
         [Required]
+        [Phone]
+        public string ManufacturePhone { get; set; } = string.Empty;
+
+        [Required]
+        [EmailAddress]
+        public string ManufactureEmail { get; set; } = string.Empty;
+
+        [Required]
         [Range(typeof(bool), "false", "true")]
         public bool? IsAvailable { get; set; }
     }

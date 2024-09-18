@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using testAPI.Data;
 using testAPI.Interfaces;
 using testAPI.Models;
+using testAPI.Repository;
 using testAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -86,8 +87,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
-
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 
