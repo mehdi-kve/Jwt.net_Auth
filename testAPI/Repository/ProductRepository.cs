@@ -38,8 +38,9 @@ namespace testAPI.Repository
             return products;
         }
 
-        public async Task<Product> CreateAsync(Product productModel)
+        public async Task<Product> CreateAsync(Product productModel,string appUserId)
         {
+            productModel.AppUserId = appUserId;
             await _context.Products.AddAsync(productModel);
             await _context.SaveChangesAsync();
             return productModel;
@@ -52,6 +53,8 @@ namespace testAPI.Repository
                 return null;
 
             product.Name = productModel.Name;
+            product.ManufacturePhone = productModel.ManufacturePhone;
+            product.ManufactureEmail = productModel.ManufactureEmail;
             product.ProduceDate = productModel.ProduceDate;
             product.IsAvailable = productModel.IsAvailable;
 
