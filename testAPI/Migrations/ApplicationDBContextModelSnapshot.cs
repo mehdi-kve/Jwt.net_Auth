@@ -324,7 +324,7 @@ namespace testAPI.Migrations
             modelBuilder.Entity("testAPI.Models.Product", b =>
                 {
                     b.HasOne("testAPI.Models.AppUser", "AppUser")
-                        .WithMany("Portfolios")
+                        .WithMany("Products")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -332,7 +332,7 @@ namespace testAPI.Migrations
 
             modelBuilder.Entity("testAPI.Models.AppUser", b =>
                 {
-                    b.Navigation("Portfolios");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

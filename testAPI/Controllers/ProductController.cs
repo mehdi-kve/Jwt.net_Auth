@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using testAPI.Data;
 using testAPI.Dtos.Product;
+using testAPI.Extensions;
 using testAPI.Models;
 
 namespace testAPI.Controllers
@@ -13,11 +15,14 @@ namespace testAPI.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDBContext _context;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public ProductController(ApplicationDBContext context, IMapper mapper)
+        public ProductController(ApplicationDBContext context, IMapper mapper,
+            UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
@@ -46,9 +51,12 @@ namespace testAPI.Controllers
         public async Task<IActionResult> Create([FromBody] CreateProductDto productModel)
         {
             var product = _mapper.Map<Product>(productModel);
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+            product.AppUserId = appUser.Id;
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
-            return Ok(product);
+            return Ok(_mapper.Map<ProductDto>(product));
         }
 
         [HttpPut]
@@ -60,6 +68,12 @@ namespace testAPI.Controllers
             if (product == null)
                 return BadRequest("Nothing Found");
 
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+
+            if (product.AppUserId != appUser.Id)
+                return StatusCode(401, "Access Denied");
+
             var updatedProduct = _mapper.Map<Product>(productModel);
 
             product.Name = updatedProduct.Name;
@@ -67,7 +81,7 @@ namespace testAPI.Controllers
             product.IsAvailable = updatedProduct.IsAvailable;
 
             await _context.SaveChangesAsync();
-            return Ok(product);
+            return Ok(_mapper.Map<ProductDto>(product));
         }
 
         [HttpDelete]
@@ -79,9 +93,15 @@ namespace testAPI.Controllers
             if (product == null)
                 return BadRequest("Nothing Found");
 
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+
+            if (product.AppUserId != appUser.Id)
+                return StatusCode(401, "Access Denied");
+
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return Ok(product);
+            return Ok(_mapper.Map<ProductDto>(product));
         }
     }
 }
