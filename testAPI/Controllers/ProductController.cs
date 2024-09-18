@@ -27,6 +27,7 @@ namespace testAPI.Controllers
         }
 
         [HttpGet]
+        [Route("GetAll")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
@@ -36,7 +37,7 @@ namespace testAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("GetById/{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
@@ -45,7 +46,26 @@ namespace testAPI.Controllers
                 return BadRequest("Nothing Found");
             return Ok(_mapper.Map<ProductDto>(product));
         }
-        
+
+        [HttpGet]
+        [Route("GetByUsername/{username}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByUsername(string username)
+        {
+            var appUser = await _userManager.FindByNameAsync(username);
+            if (appUser == null)
+                return BadRequest("User Not Found");
+
+            var products = await _context.Products.Where(p => p.AppUserId == appUser.Id).ToListAsync();
+
+            if (products == null)
+                return BadRequest("Nothing Found");
+
+            var productDto = products.Select(p => _mapper.Map<ProductDto>(p));
+
+            return Ok(productDto);
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateProductDto productModel)
