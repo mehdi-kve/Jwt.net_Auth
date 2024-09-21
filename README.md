@@ -22,7 +22,7 @@ Authentication Project in asp.net core with JSON Web Tokens (JWT), Access contro
 
 `$ dotnet restore`
 
-`$ dotnet user-secrets set ConnectionStrings:Default "<YOUR CONNETION STRING>"`
+`$ dotnet user-secrets set ConnectionStrings:DefaultConnection "<YOUR CONNETION STRING>"`
 
 `$ dotnet ef database update`
 
