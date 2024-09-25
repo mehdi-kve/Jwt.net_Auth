@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using testAPI.Data;
-using testAPI.Dtos.Product;
-using testAPI.Helper;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Data;
+using api.Dtos.Product;
+using api.Helper;
+using api.Interfaces;
+using api.Models;
 
-namespace testAPI.Repository
+namespace api.Repository
 {
     public class ProductRepository : IProductRepository
     {

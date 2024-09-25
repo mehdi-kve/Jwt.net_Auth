@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using testAPI.Dtos.Product;
+using api.Dtos.Product;
 
-namespace testAPI.Features.Products.Commands.UpdateProduct
+namespace api.Features.Products.Commands.UpdateProduct
 {
     public class UpdateProductCommand : IRequest<ProductDto>
     {

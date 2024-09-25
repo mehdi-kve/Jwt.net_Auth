@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using testAPI.Models;
+using api.Models;
 
-namespace testAPI.Data
+namespace api.Data
 {
     public class ApplicationDBContext : IdentityDbContext<AppUser>
     {

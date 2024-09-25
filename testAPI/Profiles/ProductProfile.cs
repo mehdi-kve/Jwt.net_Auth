@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using testAPI.Dtos.Product;
-using testAPI.Models;
+using api.Dtos.Product;
+using api.Models;
 
-namespace testAPI.Profiles
+namespace api.Profiles
 {
     public class ProductProfile : Profile
     {

@@ -1,4 +1,4 @@
-﻿namespace testAPI.Helper
+﻿namespace api.Helper
 {
     public class QueryObject
     {

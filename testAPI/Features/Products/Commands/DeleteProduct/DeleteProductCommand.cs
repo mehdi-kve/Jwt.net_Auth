@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using testAPI.Dtos.Product;
+using api.Dtos.Product;
 
-namespace testAPI.Features.Products.Commands.DeleteProduct
+namespace api.Features.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommand : IRequest<ProductDto>
     {

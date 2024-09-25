@@ -1,6 +1,6 @@
-﻿using testAPI.Models;
+﻿using api.Models;
 
-namespace testAPI.Interfaces
+namespace api.Interfaces
 {
     public interface ITokenService
     {

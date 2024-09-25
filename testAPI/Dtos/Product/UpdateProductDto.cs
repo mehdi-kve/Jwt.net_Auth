@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace testAPI.Dtos.Product
+namespace api.Dtos.Product
 {
     public class UpdateProductDto
     {

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using testAPI.Data;
-using testAPI.Dtos.Product;
-using testAPI.Features.Products.Queries.GetAllProducts;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Data;
+using api.Dtos.Product;
+using api.Features.Products.Queries.GetAllProducts;
+using api.Interfaces;
+using api.Models;
 
-namespace testAPI.Features.Products.Queries.GetProductById
+namespace api.Features.Products.Queries.GetProductById
 {
     public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, ProductDto>
     {

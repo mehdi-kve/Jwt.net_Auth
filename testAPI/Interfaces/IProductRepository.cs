@@ -1,8 +1,8 @@
-﻿using testAPI.Dtos.Product;
-using testAPI.Helper;
-using testAPI.Models;
+﻿using api.Dtos.Product;
+using api.Helper;
+using api.Models;
 
-namespace testAPI.Interfaces
+namespace api.Interfaces
 {
     public interface IProductRepository
     {

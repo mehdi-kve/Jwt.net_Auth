@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace testAPI.Extensions
+namespace api.Extensions
 {
     public static class ClaimExtensions
     {

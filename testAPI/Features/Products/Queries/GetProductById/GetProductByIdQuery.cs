@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using testAPI.Dtos.Product;
+using api.Dtos.Product;
 
-namespace testAPI.Features.Products.Queries.GetProductById
+namespace api.Features.Products.Queries.GetProductById
 {
     public class GetProductByIdQuery : IRequest<ProductDto>
     {

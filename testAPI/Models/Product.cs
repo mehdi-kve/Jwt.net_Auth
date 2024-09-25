@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace testAPI.Models
+namespace api.Models
 {
     [Table("Products")]
     public class Product

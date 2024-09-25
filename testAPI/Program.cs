@@ -4,11 +4,11 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using testAPI.Data;
-using testAPI.Interfaces;
-using testAPI.Models;
-using testAPI.Repository;
-using testAPI.Services;
+using api.Data;
+using api.Interfaces;
+using api.Models;
+using api.Repository;
+using api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

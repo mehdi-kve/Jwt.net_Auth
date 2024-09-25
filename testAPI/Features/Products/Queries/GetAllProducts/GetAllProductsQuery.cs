@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using testAPI.Dtos.Product;
-using testAPI.Helper;
+using api.Dtos.Product;
+using api.Helper;
 
-namespace testAPI.Features.Products.Queries.GetAllProducts
+namespace api.Features.Products.Queries.GetAllProducts
 {
     public class GetAllProductsQuery : IRequest<IEnumerable<ProductDto>>
     {

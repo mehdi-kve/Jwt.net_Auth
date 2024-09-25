@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using System.ComponentModel.DataAnnotations;
-using testAPI.Dtos.Product;
-using testAPI.Models;
+using api.Dtos.Product;
+using api.Models;
 
-namespace testAPI.Features.Products.Commands.CreateProduct
+namespace api.Features.Products.Commands.CreateProduct
 {
     public class CreateProductCommand : IRequest<ProductDto>
     {

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using testAPI.Dtos.Product;
-using testAPI.Interfaces;
+using api.Dtos.Product;
+using api.Interfaces;
 
-namespace testAPI.Features.Products.Commands.DeleteProduct
+namespace api.Features.Products.Commands.DeleteProduct
 {
     public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, ProductDto>
     {

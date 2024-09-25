@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using testAPI.Dtos.Product;
-using testAPI.Features.Products.Commands.CreateProduct;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Dtos.Product;
+using api.Features.Products.Commands.CreateProduct;
+using api.Interfaces;
+using api.Models;
 
-namespace testAPI.Features.Products.Commands.UpdateProduct
+namespace api.Features.Products.Commands.UpdateProduct
 {
     public class UpdateProdcutHandler : IRequestHandler<UpdateProductCommand, ProductDto>
     {

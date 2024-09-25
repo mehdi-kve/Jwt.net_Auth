@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using testAPI.Data;
-using testAPI.Dtos.Product;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Data;
+using api.Dtos.Product;
+using api.Interfaces;
+using api.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace testAPI.Features.Products.Queries.GetAllProducts
+namespace api.Features.Products.Queries.GetAllProducts
 {
     public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>
     {

@@ -4,20 +4,20 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using testAPI.Data;
-using testAPI.Dtos.Product;
-using testAPI.Extensions;
-using testAPI.Features.Products.Commands.CreateProduct;
-using testAPI.Features.Products.Commands.DeleteProduct;
-using testAPI.Features.Products.Commands.UpdateProduct;
-using testAPI.Features.Products.Queries.GetAllProducts;
-using testAPI.Features.Products.Queries.GetProductById;
-using testAPI.Helper;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Data;
+using api.Dtos.Product;
+using api.Extensions;
+using api.Features.Products.Commands.CreateProduct;
+using api.Features.Products.Commands.DeleteProduct;
+using api.Features.Products.Commands.UpdateProduct;
+using api.Features.Products.Queries.GetAllProducts;
+using api.Features.Products.Queries.GetProductById;
+using api.Helper;
+using api.Interfaces;
+using api.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace testAPI.Controllers
+namespace api.Controllers
 {
     [ApiController]
     [Route("api/product")]

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using testAPI.Data;
-using testAPI.Dtos.Product;
-using testAPI.Interfaces;
-using testAPI.Models;
+using api.Data;
+using api.Dtos.Product;
+using api.Interfaces;
+using api.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace testAPI.Features.Products.Commands.CreateProduct
+namespace api.Features.Products.Commands.CreateProduct
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto>
     {
